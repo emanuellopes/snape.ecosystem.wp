@@ -1,0 +1,19 @@
+{
+    "name": "emanuellopes/snape.ecosystem.wp",
+    "description": "Ecosystem Package to use in wordpress themes",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "SampleThemeApp\\": "sample-theme/App",
+            "Snape\\EcoSystemWP\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Emanuel Lopes",
+            "email": "emanuel.lopes.pt@gmail.com"
+        }
+    ],
+    "require": {}
+}
