@@ -15,5 +15,10 @@
             "email": "emanuel.lopes.pt@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+      "php": "^7.4",
+      "ext-json": "*",
+        "league/container": "^4.2",
+        "league/config": "^1.1"
+    }
 }
