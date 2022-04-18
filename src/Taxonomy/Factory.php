@@ -15,7 +15,7 @@ class Factory implements ITaxonomyFactoryInterface
         $this->container = $container;
     }
 
-    private function getLabels($singular, $plural)
+    private function getLabels(string $singular, string $plural): array
     {
         return array(
             'name' => $plural,
@@ -47,7 +47,7 @@ class Factory implements ITaxonomyFactoryInterface
      *
      * @return array
      */
-    private function defaultArguments()
+    private function defaultArguments(): array
     {
         return array(
             'public' => true,
@@ -58,8 +58,11 @@ class Factory implements ITaxonomyFactoryInterface
         );
     }
 
-    private function createTaxonomyInstance($slug, $singular = '', $plural = ''): ITaxonomyInterface
-    {
+    private function createTaxonomyInstance(
+        string $slug,
+        string $singular = '',
+        string $plural = ''
+    ): ITaxonomyInterface {
         $taxonomy = new Taxonomy($slug);
         $taxonomy->setLabels($this->getLabels($singular, $plural))->setArguments($this->defaultArguments());
 
@@ -103,11 +106,8 @@ class Factory implements ITaxonomyFactoryInterface
                || (function_exists('taxonomy_exists') && taxonomy_exists($slug));
     }
 
-    public function remove(
-        string $slug,
-        array $taxonomies = array(),
-        int $priority = 10
-    ) {
+    public function remove(string $slug, array $taxonomies = array(), int $priority = 10): void
+    {
         $taxonomy = $this->createTaxonomyInstance($slug);
         $taxonomy->unregister($taxonomies, $priority);
     }

@@ -15,5 +15,5 @@ interface ITaxonomyFactoryInterface
 
     public function exists(string $slug): bool;
 
-    public function remove(string $slug, array $taxonomies = array(), int $priority = 10);
+    public function remove(string $slug, array $taxonomies = array(), int $priority = 10): void;
 }

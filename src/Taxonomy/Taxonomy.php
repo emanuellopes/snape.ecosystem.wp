@@ -11,7 +11,7 @@ class Taxonomy implements ITaxonomyInterface
      *
      * @var string
      */
-    protected $slug;
+    protected string $slug;
 
     /**
      *
@@ -19,14 +19,14 @@ class Taxonomy implements ITaxonomyInterface
      *
      * @var array
      */
-    protected $post_types = array();
+    protected array $post_types = array();
 
     /**
      * Custom arguments for register_taxonomy.
      *
      * @var array
      */
-    protected $args = array();
+    protected array $args = array();
 
     public function __construct(string $slug)
     {
@@ -140,7 +140,7 @@ class Taxonomy implements ITaxonomyInterface
     /**
      * Register taxonomy hook callback.
      */
-    public function register()
+    public function register(): void
     {
         register_taxonomy($this->slug, $this->post_types, $this->getArguments());
         $this->bind();
@@ -150,7 +150,7 @@ class Taxonomy implements ITaxonomyInterface
      * Bind the taxonomy to its custom post type|object. Make sure the taxonomy
      * can be found in 'parse_query' or 'pre_get_posts' filters.
      */
-    protected function bind()
+    protected function bind(): void
     {
         foreach ($this->post_types as $object) {
             register_taxonomy_for_object_type($this->slug, $object);
@@ -193,7 +193,7 @@ class Taxonomy implements ITaxonomyInterface
         return $this;
     }
 
-    public function updateCallback($args, $taxonomy_type)
+    public function updateCallback(array $args, string $taxonomy_type): array
     {
         $args_new = array_merge($args, $this->getArguments());
 
@@ -218,7 +218,7 @@ class Taxonomy implements ITaxonomyInterface
      * @param  int  $priority
      *
      */
-    public function unregister(array $taxonomies = array(), int $priority = 10)
+    public function unregister(array $taxonomies = array(), int $priority = 10): void
     {
         if (! empty($taxonomies)) {
             $this->setObjects($taxonomies);

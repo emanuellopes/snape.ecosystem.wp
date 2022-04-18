@@ -87,9 +87,9 @@ class Factory implements IPostTypeFactoryInterface
     }
 
     private function createPostTypeInstance(
-        $slug,
-        $singular,
-        $plural
+        string $slug,
+        string $singular,
+        string $plural
     ): IPostTypeInterface {
         $post_type = new PostType($slug);
         $post_type->setLabels($this->getLabels($singular, $plural))
@@ -108,10 +108,10 @@ class Factory implements IPostTypeFactoryInterface
      * @return IPostTypeInterface
      */
     public function make(
-        $slug,
-        $singular,
-        $plural,
-        $priority = 10
+        string $slug,
+        string $singular,
+        string $plural,
+        int $priority = 10
     ): IPostTypeInterface {
         if ($this->exists($slug)) {
             throw new \Exception("The post type [{$slug}] already exists.");
@@ -129,7 +129,7 @@ class Factory implements IPostTypeFactoryInterface
     /**
      * Update custom post type
      *
-     * @param $slug
+     * @param  string  $slug
      * @param  string  $singular
      * @param  string  $plural
      * @param  int  $priority
@@ -137,10 +137,10 @@ class Factory implements IPostTypeFactoryInterface
      * @return IPostTypeInterface
      */
     public function update(
-        $slug,
-        $singular = '',
-        $plural = '',
-        $priority = 10
+        string $slug,
+        string $singular = '',
+        string $plural = '',
+        int $priority = 10
     ): IPostTypeInterface {
         $post_type = $this->createPostTypeInstance($slug, $singular, $plural);
 

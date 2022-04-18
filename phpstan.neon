@@ -5,5 +5,5 @@ parameters:
   paths:
     - %currentWorkingDirectory%/src
 
-  ignoreErrors:
-      - '#Call to an undefined method Carbon_Fields\\Field\\Field::set_(html|layout|settings|value_type|input_format|storage_format)#'
+#  ignoreErrors:
+#      - '#Call to an undefined method Carbon_Fields\\Field\\Field::set_(html|layout|settings|value_type|input_format|storage_format)#'

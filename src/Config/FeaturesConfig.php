@@ -17,9 +17,9 @@ class FeaturesConfig extends AbstractConfigSchema
     }
 
     /**
-     * @return mixed
+     * @return array<string, mixed> $config
      */
-    public function getConfigFile()
+    public function getConfigFile(): array
     {
         try {
             $json = json_decode(

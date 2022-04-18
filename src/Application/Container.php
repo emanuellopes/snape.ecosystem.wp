@@ -11,11 +11,11 @@ class Container extends \League\Container\Container implements
 {
     public function getConfig(): ConfigurationInterface
     {
-        return $this->get(ConfigurationInterface::class);
+        return $this->get(ConfigurationInterface::class); // @phpstan-ignore-line
     }
 
     public function setConfig(): ConfigurationBuilderInterface
     {
-        return $this->get(ConfigurationBuilderInterface::class);
+        return $this->get(ConfigurationBuilderInterface::class); // @phpstan-ignore-line
     }
 }

@@ -13,19 +13,19 @@ class ApplicationConfig extends AbstractConfigSchema
         return Expect::structure([
             'providers' => Expect::list('string')->required(),
             'timber' => Expect::structure([
-                'views' => Expect::string()->default('views')
+                'views' => Expect::string()->default('views'),
             ])->required(),
             'boundedContext' => Expect::string()->required(),
             'theme' => Expect::structure([
-                'supports' => Expect::arrayOf(Expect::anyOf(Expect::bool(), Expect::array()), 'string')
-            ])->required()
+                'supports' => Expect::arrayOf(Expect::anyOf(Expect::bool(), Expect::array()), 'string'),
+            ])->required(),
         ]);
     }
 
     /**
-     * @return mixed
+     * @return  array<string, mixed> $config
      */
-    public function getConfigFile()
+    public function getConfigFile(): array
     {
         try {
             $json = json_decode(

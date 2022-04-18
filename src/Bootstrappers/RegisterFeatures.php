@@ -19,7 +19,7 @@ class RegisterFeatures implements IBootstrapInterface
     private IApplicationInterface $application;
     private Container $container;
 
-    private function registerFeaturesConfig()
+    private function registerFeaturesConfig(): void
     {
         $featuresConfig = new FeaturesConfig($this->application);
 
