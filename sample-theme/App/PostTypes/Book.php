@@ -20,16 +20,14 @@ class Book extends AbstractFeature
     {
         $this->postTypeFactory->make('book', 'Book', 'Books')
                               ->setArguments(array(
-                                  array(
-                                      'supports'     => array(
-                                          'title',
-                                          'editor',
-                                          'comments',
-                                          'thumbnail',
-                                          'excerpt',
-                                      ),
-                                      'show_in_rest' => false,
+                                  'supports'     => array(
+                                      'title',
+//                                          'editor',
+                                      'comments',
+                                      'thumbnail',
+                                      'excerpt',
                                   ),
+                                  'show_in_rest' => false,
                               ));
     }
 }
