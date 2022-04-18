@@ -2,7 +2,6 @@
 
 namespace Snape\EcoSystemWP\Application;
 
-use League\Container\Container;
 use League\Container\ReflectionContainer;
 use Snape\EcoSystemWP\Contracts\IApplicationInterface;
 use Snape\EcoSystemWP\Contracts\IBootstrapInterface;

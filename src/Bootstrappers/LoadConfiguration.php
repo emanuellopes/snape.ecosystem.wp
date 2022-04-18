@@ -15,16 +15,11 @@ class LoadConfiguration implements IBootstrapInterface
     {
         $container = $application->getContainer();
         $config = new Configuration();
-        $container->add(ConfigurationInterface::class, $config)->setAlias(
-            ConfigurationBuilderInterface::class
-        );
-//        $container->add(ConfigurationBuilderInterface::class, $config); //TODO: check if this is necessary
+        $container->add(ConfigurationInterface::class, $config);
+        //$container->add(ConfigurationBuilderInterface::class, $config); //TODO: check if this is necessary
 
         $applicationConfig = new ApplicationConfig($application);
         $config->addSchema($applicationConfig->getKey(), $applicationConfig->getSchema());
         $config->merge($applicationConfig->getConfigFile());
-
-        $a = $config->get('app');
-        d($a);
     }
 }

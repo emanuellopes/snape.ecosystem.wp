@@ -3,6 +3,7 @@
 namespace Snape\EcoSystemWP\Application;
 
 use Snape\EcoSystemWP\Bootstrappers\LoadConfiguration;
+use Snape\EcoSystemWP\Bootstrappers\RegisterProviders;
 
 trait BootstrapTrait
 {
@@ -32,6 +33,7 @@ trait BootstrapTrait
     {
         return array(
             LoadConfiguration::class,
+            RegisterProviders::class,
         );
     }
 }

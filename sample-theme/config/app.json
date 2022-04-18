@@ -1,6 +1,8 @@
 {
   "app": {
-    "providers": [],
+    "providers": [
+      "Snape\\EcoSystemWP\\Providers\\PostTypeServiceProvider"
+    ],
     "timber": {
       "views": "views"
     },
