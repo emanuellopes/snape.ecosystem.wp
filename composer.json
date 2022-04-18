@@ -30,7 +30,8 @@
     "php": "^7.4",
     "ext-json": "*",
     "league/container": "^4.2",
-    "league/config": "^1.1"
+    "league/config": "^1.1",
+    "htmlburger/carbon-fields": "^3.3"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
