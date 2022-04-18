@@ -5,6 +5,7 @@ namespace Snape\EcoSystemWP\Application;
 use Snape\EcoSystemWP\Bootstrappers\LoadConfiguration;
 use Snape\EcoSystemWP\Bootstrappers\RegisterFeatures;
 use Snape\EcoSystemWP\Bootstrappers\RegisterProviders;
+use Snape\EcoSystemWP\Bootstrappers\ThemeSupport;
 
 trait BootstrapTrait
 {
@@ -34,6 +35,7 @@ trait BootstrapTrait
     {
         return array(
             LoadConfiguration::class,
+            ThemeSupport::class,
             RegisterProviders::class,
             RegisterFeatures::class,
         );
