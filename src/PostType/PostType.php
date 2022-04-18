@@ -2,7 +2,7 @@
 
 namespace Snape\EcoSystemWP\PostType;
 
-use Snape\EcoSystemWP\Contracts\IPostTypeInterface;
+use Snape\EcoSystemWP\Contracts\PostType\IPostTypeInterface;
 use WP_Error;
 use WP_Post_Type;
 

@@ -3,8 +3,7 @@
 namespace Snape\EcoSystemWP\PostType;
 
 use League\Container\DefinitionContainerInterface;
-use Snape\EcoSystemWP\Contracts\IPostTypeFactoryInterface;
-use Snape\EcoSystemWP\Contracts\IPostTypeInterface;
+use Snape\EcoSystemWP\Contracts\PostType\IPostTypeFactoryInterface;
 
 class Factory implements IPostTypeFactoryInterface
 {

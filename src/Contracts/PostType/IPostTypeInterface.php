@@ -1,6 +1,6 @@
 <?php
 
-namespace Snape\EcoSystemWP\Contracts;
+namespace Snape\EcoSystemWP\Contracts\PostType;
 
 interface IPostTypeInterface {
     /**
