@@ -6,7 +6,7 @@ use JsonException;
 use Nette\Schema\Expect;
 use Nette\Schema\Schema;
 
-class FeaturesConfig extends ConfigSchema
+class FeaturesConfig extends AbstractConfigSchema
 {
     public function getSchema(): Schema
     {
@@ -31,7 +31,7 @@ class FeaturesConfig extends ConfigSchema
                 JSON_THROW_ON_ERROR
             );
         } catch (JsonException $e) {
-            error_log("Configuration file not found");
+            error_log('Configuration file not found');
 
             return array();
         }

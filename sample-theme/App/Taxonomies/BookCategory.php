@@ -7,7 +7,6 @@ use Snape\EcoSystemWP\Features\AbstractFeature;
 
 class BookCategory extends AbstractFeature
 {
-
     private ITaxonomyFactoryInterface $taxonomy;
 
     public function __construct(ITaxonomyFactoryInterface $taxonomy)

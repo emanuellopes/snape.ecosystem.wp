@@ -2,7 +2,8 @@
 
 namespace Snape\EcoSystemWP\Contracts\PostType;
 
-interface IPostTypeInterface {
+interface IPostTypeInterface
+{
     /**
      * Set the post type labels.
      *
@@ -10,7 +11,7 @@ interface IPostTypeInterface {
      *
      * @return IPostTypeInterface
      */
-    public function setLabels( array $labels ): IPostTypeInterface;
+    public function setLabels(array $labels): IPostTypeInterface;
 
     /**
      * Return the post type labels.
@@ -26,7 +27,7 @@ interface IPostTypeInterface {
      *
      * @return string
      */
-    public function getLabel( string $name ): string;
+    public function getLabel(string $name): string;
 
     /**
      * Set the post type arguments.
@@ -35,7 +36,7 @@ interface IPostTypeInterface {
      *
      * @return IPostTypeInterface
      */
-    public function setArguments( array $args ): IPostTypeInterface;
+    public function setArguments(array $args): IPostTypeInterface;
 
     /**
      * Return the post type arguments.
@@ -51,7 +52,7 @@ interface IPostTypeInterface {
      *
      * @return mixed
      */
-    public function getArgument( string $property );
+    public function getArgument(string $property);
 
     /**
      * Return the WordPress WP_Post_Type instance.
@@ -67,7 +68,7 @@ interface IPostTypeInterface {
      *
      * @return IPostTypeInterface
      */
-    public function setTitlePlaceholder( string $title ): IPostTypeInterface;
+    public function setTitlePlaceholder(string $title): IPostTypeInterface;
 
     /**
      * Return the post type slug.
@@ -83,5 +84,4 @@ interface IPostTypeInterface {
      * @return string
      */
     public function getName(): string;
-
 }

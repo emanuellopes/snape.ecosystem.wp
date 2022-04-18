@@ -3,9 +3,9 @@
 namespace Snape\EcoSystemWP\Config;
 
 use Snape\EcoSystemWP\Contracts\IApplicationInterface;
-use Snape\EcoSystemWP\Contracts\IConfigurationSchema;
+use Snape\EcoSystemWP\Contracts\IConfigurationSchemaInterface;
 
-abstract class ConfigSchema implements IConfigurationSchema
+abstract class AbstractConfigSchema implements IConfigurationSchemaInterface
 {
     protected IApplicationInterface $application;
 

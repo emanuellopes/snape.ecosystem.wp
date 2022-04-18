@@ -4,7 +4,7 @@ namespace Snape\EcoSystemWP\Contracts;
 
 use Nette\Schema\Schema;
 
-interface IConfigurationSchema
+interface IConfigurationSchemaInterface
 {
     public function getSchema(): Schema;
 }

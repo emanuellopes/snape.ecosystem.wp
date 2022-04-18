@@ -30,7 +30,7 @@ class RegisterProviders implements IBootstrapInterface
 
         /** @var ServiceProviderInterface[] $providers */
         foreach ($providers as $provider) {
-            $container->addServiceProvider(new $provider);
+            $container->addServiceProvider(new $provider());
         }
     }
 }

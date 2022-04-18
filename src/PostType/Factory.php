@@ -18,29 +18,29 @@ class Factory implements IPostTypeFactoryInterface
     /**
      * Return the default labels for CPT
      *
-     * @param $singular
-     * @param $plural
+     * @param  string  $singular
+     * @param  string  $plural
      *
      * @return array
      */
-    private function getLabels($singular, $plural)
+    private function getLabels(string $singular, string $plural): array
     {
         return array(
-            'name'                  => $plural,
-            'singular_name'         => $singular,
-            'add_new_item'          => sprintf('Add New %s', $singular),
-            'edit_item'             => sprintf('Edit %s', $singular),
-            'new_item'              => sprintf('New %s', $singular),
-            'view_item'             => sprintf('View %s', $singular),
-            'view_items'            => sprintf('View %s', $plural),
-            'search_items'          => sprintf('Search %s', $plural),
-            'not_found'             => sprintf('No %s found', $plural),
-            'not_found_in_trash'    => sprintf('No %s found in Trash', $plural),
-            'parent_item_colon'     => sprintf('Parent %s:', $singular),
-            'all_items'             => sprintf('All %s', $plural),
-            'archives'              => sprintf('%s Archives', $singular),
-            'attributes'            => sprintf('%s Attributes', $singular),
-            'insert_into_item'      => sprintf(
+            'name' => $plural,
+            'singular_name' => $singular,
+            'add_new_item' => sprintf('Add New %s', $singular),
+            'edit_item' => sprintf('Edit %s', $singular),
+            'new_item' => sprintf('New %s', $singular),
+            'view_item' => sprintf('View %s', $singular),
+            'view_items' => sprintf('View %s', $plural),
+            'search_items' => sprintf('Search %s', $plural),
+            'not_found' => sprintf('No %s found', $plural),
+            'not_found_in_trash' => sprintf('No %s found in Trash', $plural),
+            'parent_item_colon' => sprintf('Parent %s:', $singular),
+            'all_items' => sprintf('All %s', $plural),
+            'archives' => sprintf('%s Archives', $singular),
+            'attributes' => sprintf('%s Attributes', $singular),
+            'insert_into_item' => sprintf(
                 'Insert into %s',
                 strtolower($singular)
             ),
@@ -48,12 +48,12 @@ class Factory implements IPostTypeFactoryInterface
                 'Uploaded to this %s',
                 strtolower($singular)
             ),
-            'filter_items_list'     => sprintf(
+            'filter_items_list' => sprintf(
                 'Filter %s list',
                 strtolower($plural)
             ),
             'items_list_navigation' => sprintf('%s list navigation', $plural),
-            'items_list'            => sprintf('%s list', $plural),
+            'items_list' => sprintf('%s list', $plural),
         );
     }
 
@@ -62,15 +62,15 @@ class Factory implements IPostTypeFactoryInterface
      *
      * @return array
      */
-    private function defaultArguments()
+    private function defaultArguments(): array
     {
         return array(
-            'public'              => true,
-            'hierarchical'        => true,
+            'public' => true,
+            'hierarchical' => true,
             'exclude_from_search' => false,
-            'publicly_queryable'  => true,
-            'show_in_rest'        => true,
-            'supports'            => array(
+            'publicly_queryable' => true,
+            'show_in_rest' => true,
+            'supports' => array(
                 'title',
                 'editor',
                 'comments',
@@ -142,9 +142,9 @@ class Factory implements IPostTypeFactoryInterface
         $plural = '',
         $priority = 10
     ): IPostTypeInterface {
-        $post_type = $this->createPostTypeInstance( $slug, $singular, $plural );
+        $post_type = $this->createPostTypeInstance($slug, $singular, $plural);
 
-        $post_type->update( $priority );
+        $post_type->update($priority);
 
         return $post_type;
     }

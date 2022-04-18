@@ -18,7 +18,7 @@ interface ITaxonomyInterface
      *
      * @return ITaxonomyInterface
      */
-    public function setLabels( array $labels ): ITaxonomyInterface;
+    public function setLabels(array $labels): ITaxonomyInterface;
 
     /**
      * Return taxonomy labels.
@@ -34,7 +34,7 @@ interface ITaxonomyInterface
      *
      * @return string
      */
-    public function getLabel( string $name ): string;
+    public function getLabel(string $name): string;
 
     /**
      * Set taxonomy arguments.
@@ -43,7 +43,7 @@ interface ITaxonomyInterface
      *
      * @return ITaxonomyInterface
      */
-    public function setArguments( array $args ): ITaxonomyInterface;
+    public function setArguments(array $args): ITaxonomyInterface;
 
     /**
      * Return taxonomy arguments.
@@ -59,7 +59,7 @@ interface ITaxonomyInterface
      *
      * @return mixed
      */
-    public function getArgument( string $property );
+    public function getArgument(string $property);
 
     /**
      * Set taxonomy objects.
@@ -68,7 +68,7 @@ interface ITaxonomyInterface
      *
      * @return ITaxonomyInterface
      */
-    public function setObjects( $objects ): ITaxonomyInterface;
+    public function setObjects($objects): ITaxonomyInterface;
 
     /**
      * Return taxonomy attached objects.

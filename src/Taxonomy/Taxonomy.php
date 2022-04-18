@@ -28,7 +28,8 @@ class Taxonomy implements ITaxonomyInterface
      */
     protected $args = array();
 
-    public function __construct( string $slug ) {
+    public function __construct(string $slug)
+    {
         $this->slug = $slug;
     }
 
@@ -37,7 +38,8 @@ class Taxonomy implements ITaxonomyInterface
      *
      * @return string
      */
-    public function getSlug(): string {
+    public function getSlug(): string
+    {
         return $this->slug;
     }
 
@@ -48,9 +50,10 @@ class Taxonomy implements ITaxonomyInterface
      *
      * @return ITaxonomyInterface
      */
-    public function setLabels( array $labels ): ITaxonomyInterface {
-        if ( isset( $this->args['labels'] ) ) {
-            $this->args['labels'] = array_merge( $this->args['labels'], $labels );
+    public function setLabels(array $labels): ITaxonomyInterface
+    {
+        if (isset($this->args['labels'])) {
+            $this->args['labels'] = array_merge($this->args['labels'], $labels);
         } else {
             $this->args['labels'] = $labels;
         }
@@ -63,7 +66,8 @@ class Taxonomy implements ITaxonomyInterface
      *
      * @return array
      */
-    public function getLabels(): array {
+    public function getLabels(): array
+    {
         return $this->args['labels'] ?? array();
     }
 
@@ -74,7 +78,8 @@ class Taxonomy implements ITaxonomyInterface
      *
      * @return string
      */
-    public function getLabel( string $name ): string {
+    public function getLabel(string $name): string
+    {
         $labels = $this->getLabels();
 
         return $labels[ $name ] ?? '';
@@ -87,8 +92,9 @@ class Taxonomy implements ITaxonomyInterface
      *
      * @return ITaxonomyInterface
      */
-    public function setArguments( array $args ): ITaxonomyInterface {
-        $this->args = array_merge( $this->args, $args );
+    public function setArguments(array $args): ITaxonomyInterface
+    {
+        $this->args = array_merge($this->args, $args);
 
         return $this;
     }
@@ -98,7 +104,8 @@ class Taxonomy implements ITaxonomyInterface
      *
      * @return array
      */
-    public function getArguments(): array {
+    public function getArguments(): array
+    {
         return $this->args;
     }
 
@@ -109,7 +116,8 @@ class Taxonomy implements ITaxonomyInterface
      *
      * @return mixed
      */
-    public function getArgument( string $property ) {
+    public function getArgument(string $property)
+    {
         $args = $this->getArguments();
 
         return $args[ $property ] ?? null;
@@ -122,8 +130,9 @@ class Taxonomy implements ITaxonomyInterface
      *
      * @return ITaxonomyInterface
      */
-    public function init( int $priority = 10 ): ITaxonomyInterface {
-        add_action( 'init', array( $this, 'register' ), $priority );
+    public function init(int $priority = 10): ITaxonomyInterface
+    {
+        add_action('init', array( $this, 'register' ), $priority);
 
         return $this;
     }
@@ -131,8 +140,9 @@ class Taxonomy implements ITaxonomyInterface
     /**
      * Register taxonomy hook callback.
      */
-    public function register() {
-        register_taxonomy( $this->slug, $this->post_types, $this->getArguments() );
+    public function register()
+    {
+        register_taxonomy($this->slug, $this->post_types, $this->getArguments());
         $this->bind();
     }
 
@@ -140,9 +150,10 @@ class Taxonomy implements ITaxonomyInterface
      * Bind the taxonomy to its custom post type|object. Make sure the taxonomy
      * can be found in 'parse_query' or 'pre_get_posts' filters.
      */
-    protected function bind() {
-        foreach ( $this->post_types as $object ) {
-            register_taxonomy_for_object_type( $this->slug, $object );
+    protected function bind()
+    {
+        foreach ($this->post_types as $object) {
+            register_taxonomy_for_object_type($this->slug, $object);
         }
     }
 
@@ -153,8 +164,9 @@ class Taxonomy implements ITaxonomyInterface
      *
      * @return ITaxonomyInterface
      */
-    public function setObjects( $objects ): ITaxonomyInterface {
-        $this->post_types = array_unique( array_merge( $this->post_types, (array) $objects ) );
+    public function setObjects($objects): ITaxonomyInterface
+    {
+        $this->post_types = array_unique(array_merge($this->post_types, (array) $objects));
 
         return $this;
     }
@@ -164,11 +176,13 @@ class Taxonomy implements ITaxonomyInterface
      *
      * @return array
      */
-    public function getObjects(): array {
+    public function getObjects(): array
+    {
         return $this->post_types;
     }
 
-    public function update( int $priority = 10 ): ITaxonomyInterface {
+    public function update(int $priority = 10): ITaxonomyInterface
+    {
         add_filter(
             'register_taxonomy_args',
             array( $this, 'updateCallback' ),
@@ -179,10 +193,11 @@ class Taxonomy implements ITaxonomyInterface
         return $this;
     }
 
-    public function updateCallback( $args, $taxonomy_type ) {
-        $args_new = array_merge( $args, $this->getArguments() );
+    public function updateCallback($args, $taxonomy_type)
+    {
+        $args_new = array_merge($args, $this->getArguments());
 
-        if ( $taxonomy_type === $this->getSlug() ) {
+        if ($taxonomy_type === $this->getSlug()) {
             add_action(
                 'init',
                 function () {
@@ -203,15 +218,16 @@ class Taxonomy implements ITaxonomyInterface
      * @param  int  $priority
      *
      */
-    public function unregister( array $taxonomies = array(), int $priority = 10 ) {
-        if ( ! empty( $taxonomies ) ) {
-            $this->setObjects( $taxonomies );
+    public function unregister(array $taxonomies = array(), int $priority = 10)
+    {
+        if (! empty($taxonomies)) {
+            $this->setObjects($taxonomies);
         }
         add_action(
             'init',
             function () {
-                foreach ( $this->getObjects() as $object ) {
-                    unregister_taxonomy_for_object_type( $this->getSlug(), $object );
+                foreach ($this->getObjects() as $object) {
+                    unregister_taxonomy_for_object_type($this->getSlug(), $object);
                 }
             },
             $priority
