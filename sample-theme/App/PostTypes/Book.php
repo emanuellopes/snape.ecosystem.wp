@@ -2,7 +2,7 @@
 
 namespace SampleThemeApp\PostTypes;
 
-use Snape\EcoSystemWP\Contracts\IPostTypeFactoryInterface;
+use Snape\EcoSystemWP\Contracts\PostType\IPostTypeFactoryInterface;
 use Snape\EcoSystemWP\Features\AbstractFeature;
 
 class Book extends AbstractFeature

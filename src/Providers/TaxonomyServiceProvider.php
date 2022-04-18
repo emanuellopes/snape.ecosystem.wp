@@ -2,16 +2,16 @@
 
 namespace Snape\EcoSystemWP\Providers;
 
-use Snape\EcoSystemWP\Contracts\PostType\IPostTypeFactoryInterface;
-use Snape\EcoSystemWP\PostType\Factory;
+use Snape\EcoSystemWP\Contracts\Taxonomy\ITaxonomyFactoryInterface;
+use Snape\EcoSystemWP\Taxonomy\Factory;
 
-class PostTypeServiceProvider extends AbstractBaseServiceProvider
+class TaxonomyServiceProvider extends AbstractBaseServiceProvider
 {
     public function provides(string $id): bool
     {
         $services = [
             Factory::class,
-            IPostTypeFactoryInterface::class
+            ITaxonomyFactoryInterface::class
         ];
 
         return in_array($id, $services);
@@ -25,7 +25,7 @@ class PostTypeServiceProvider extends AbstractBaseServiceProvider
         $factory = new Factory($this->getContainer());
 
         $this->getContainer()->add(
-            IPostTypeFactoryInterface::class,
+            ITaxonomyFactoryInterface::class,
             $factory
         );
     }
