@@ -5,11 +5,14 @@ namespace Snape\EcoSystemWP\Providers;
 use League\Config\ConfigurationBuilderInterface;
 use League\Config\ConfigurationInterface;
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use Snape\EcoSystemWP\Config\ConfigReaderTrait;
 use Snape\EcoSystemWP\Contracts\IApplicationInterface;
 use Snape\EcoSystemWP\Contracts\IContainerInterface;
 
 abstract class AbstractBaseServiceProvider extends AbstractServiceProvider
 {
+    use ConfigReaderTrait;
+
     public function register(): void
     {
         // TODO: Implement register() method.

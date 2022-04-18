@@ -8,24 +8,13 @@ use Snape\EcoSystemWP\Images\RegisterImages;
 
 class ImageServiceProvider extends AbstractBaseServiceProvider implements BootableServiceProviderInterface
 {
-    private function registerConfig(): void
-    {
-        $featuresConfig = new ImagesConfig($this->getApplication());
-
-        $config = $this->getConfigurationBuilder();
-        $config->addSchema(
-            $featuresConfig->getKey(),
-            $featuresConfig->getSchema()
-        );
-        $config->merge($featuresConfig->getConfigFile());
-    }
-
     /**
      * Search for reset files
      */
     public function boot(): void
     {
-        $this->registerConfig();
+        $configSchema = new ImagesConfig($this->getApplication());
+        $this->registerConfigSchema($configSchema, $this->getConfigurationBuilder());
 
         /** @var array $list_image_size */
         $list_image_size = $this->getConfig()->get('images');

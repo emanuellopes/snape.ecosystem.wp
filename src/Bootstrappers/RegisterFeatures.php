@@ -14,23 +14,8 @@ use Snape\EcoSystemWP\Features\AbstractFeature;
  *
  * @package Endor\Application
  */
-class RegisterFeatures implements IBootstrapInterface
+class RegisterFeatures extends AbstractBootstrapBase implements IBootstrapInterface
 {
-    private IApplicationInterface $application;
-    private Container $container;
-
-    private function registerFeaturesConfig(): void
-    {
-        $featuresConfig = new FeaturesConfig($this->application);
-
-        $config = $this->container->getConfigurationBuilder();
-        $config->addSchema(
-            $featuresConfig->getKey(),
-            $featuresConfig->getSchema()
-        );
-        $config->merge($featuresConfig->getConfigFile());
-    }
-
     /**
      * Initialize Exception handler tool.
      *
@@ -38,13 +23,13 @@ class RegisterFeatures implements IBootstrapInterface
      */
     public function bootstrap(IApplicationInterface $application): void
     {
-        $this->application = $application;
-        $this->container = $application->getContainer();
+        $container = $application->getContainer();
 
-        $this->registerFeaturesConfig();
+        $featuresConfig = new FeaturesConfig($application);
+        $this->registerConfigSchema($featuresConfig, $container->getConfigurationBuilder());
 
         /** @var array $feature_list */
-        $feature_list = $this->container->getConfig()->get('features');
+        $feature_list = $container->getConfig()->get('features');
 
         if (empty($feature_list)) {
             return;
@@ -73,8 +58,8 @@ class RegisterFeatures implements IBootstrapInterface
                         )
                     );
                 }
-                $this->container->addShared($abstract_name, $feature);
-                $this->container->get($feature);
+                $container->addShared($abstract_name, $feature);
+                $container->get($feature);
             }
         }
     }

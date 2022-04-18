@@ -9,7 +9,7 @@ use Snape\EcoSystemWP\Config\ApplicationConfig;
 use Snape\EcoSystemWP\Contracts\IApplicationInterface;
 use Snape\EcoSystemWP\Contracts\IBootstrapInterface;
 
-class LoadConfiguration implements IBootstrapInterface
+class LoadConfiguration extends AbstractBootstrapBase implements IBootstrapInterface
 {
     public function bootstrap(IApplicationInterface $application): void
     {
@@ -19,7 +19,7 @@ class LoadConfiguration implements IBootstrapInterface
         $container->add(ConfigurationBuilderInterface::class, $config); //TODO: check if this is necessary
 
         $applicationConfig = new ApplicationConfig($application);
-        $config->addSchema($applicationConfig->getKey(), $applicationConfig->getSchema());
-        $config->merge($applicationConfig->getConfigFile());
+
+        $this->registerConfigSchema($applicationConfig, $config);
     }
 }
