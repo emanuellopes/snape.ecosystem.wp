@@ -1,0 +1,19 @@
+{
+  "app": {
+    "providers": [],
+    "timber": {
+      "views": "views"
+    },
+    "boundedContext": "sample",
+    "theme": {
+      "supports": {
+        "post-thumbnails":  true,
+        "custom-logo": {
+          "height": 480,
+          "width": 720
+        },
+        "menus": true
+      }
+    }
+  }
+}

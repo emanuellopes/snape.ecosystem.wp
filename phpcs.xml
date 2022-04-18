@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
+  <arg name="basepath" value="."/>
+  <arg name="cache" value=".phpcs-cache"/>
+
+
+  <arg name="colors"/>
+  <arg name="extensions" value="php"/>
+
+  <config name="installed_paths" value="../../slevomat/coding-standard,../../escapestudios/symfony2-coding-standard"/>
+
+  <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
+    <properties>
+      <property name="searchAnnotations" value="true"/>
+    </properties>
+  </rule>
+
+  <rule ref="SlevomatCodingStandard.Classes.PropertySpacing">
+    <properties>
+      <property name="minLinesCountBeforeWithComment" value="1"/>
+      <property name="maxLinesCountBeforeWithComment" value="1"/>
+      <property name="maxLinesCountBeforeWithoutComment" value="1"/>
+    </properties>
+  </rule>
+
+  <rule ref="SlevomatCodingStandard.Whitespaces.DuplicateSpaces">
+    <properties>
+      <property name="ignoreSpacesInComment" value="1"/>
+    </properties>
+  </rule>
+
+  <rule ref="Symfony.NamingConventions.ValidClassName.InvalidInterfaceName"/>
+  <rule ref="Symfony.NamingConventions.ValidClassName.InvalidTraitName"/>
+  <rule ref="Symfony.NamingConventions.ValidClassName.InvalidExceptionName"/>
+  <rule ref="Symfony.NamingConventions.ValidClassName.InvalidAbstractName"/>
+
+  <rule ref="PSR2">
+    <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"/>
+  </rule>
+
+  <rule ref="Generic.Formatting.SpaceAfterCast"/>
+  <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired"/>
+  <rule ref="SlevomatCodingStandard.Functions.RequireTrailingCommaInDeclaration"/>
+
+  <rule ref="PSR12"/>
+
+  <file>./</file>
+
+  <exclude-pattern>./vendor/*</exclude-pattern>
+  <exclude-pattern>./dist/*</exclude-pattern>
+  <exclude-pattern>./var/*</exclude-pattern>
+  <exclude-pattern>./build/*</exclude-pattern>
+  <exclude-pattern>./node_modules/*</exclude-pattern>
+</ruleset>
+
