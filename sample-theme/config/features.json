@@ -1,0 +1,8 @@
+{
+  "features": {
+    "admin": {
+      "book": "SampleThemeApp\\PostTypes\\Book"
+    },
+    "public": {}
+  }
+}

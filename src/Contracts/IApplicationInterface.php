@@ -2,7 +2,7 @@
 
 namespace Snape\EcoSystemWP\Contracts;
 
-use League\Container\Container;
+use Snape\EcoSystemWP\Application\Container;
 
 interface IApplicationInterface
 {

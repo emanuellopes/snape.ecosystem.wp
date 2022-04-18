@@ -13,10 +13,12 @@ class LoadConfiguration implements IBootstrapInterface
 {
     public function bootstrap(IApplicationInterface $application): void
     {
+        $this->application = $application;
+
         $container = $application->getContainer();
         $config = new Configuration();
         $container->add(ConfigurationInterface::class, $config);
-        //$container->add(ConfigurationBuilderInterface::class, $config); //TODO: check if this is necessary
+        $container->add(ConfigurationBuilderInterface::class, $config); //TODO: check if this is necessary
 
         $applicationConfig = new ApplicationConfig($application);
         $config->addSchema($applicationConfig->getKey(), $applicationConfig->getSchema());
