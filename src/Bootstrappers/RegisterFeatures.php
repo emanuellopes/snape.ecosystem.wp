@@ -23,7 +23,7 @@ class RegisterFeatures implements IBootstrapInterface
     {
         $featuresConfig = new FeaturesConfig($this->application);
 
-        $config = $this->container->setConfig();
+        $config = $this->container->getConfigurationBuilder();
         $config->addSchema(
             $featuresConfig->getKey(),
             $featuresConfig->getSchema()

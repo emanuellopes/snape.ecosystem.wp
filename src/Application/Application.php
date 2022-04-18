@@ -32,6 +32,8 @@ class Application implements IApplicationInterface
         $this->container->delegate(new ReflectionContainer(true));
 
         $this->config = $basePath . DIRECTORY_SEPARATOR . 'config';
+
+        $this->container->add(IApplicationInterface::class, $this);
     }
 
     public function configPath(string $folder_name = 'config'): string
@@ -47,7 +49,7 @@ class Application implements IApplicationInterface
     public function bootstrap(): void
     {
         if ($this->isBootstrapped()) {
-//            throw new ApplicationAlreadyBootstrappedException(static::class . ' already bootstrapped.');
+            throw new \Exception(static::class . ' already bootstrapped.');
         }
         $this->bootstrapped = true;
 

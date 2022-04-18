@@ -3,7 +3,8 @@
     "providers": [
       "Snape\\EcoSystemWP\\Providers\\PostTypeServiceProvider",
       "Snape\\EcoSystemWP\\Providers\\TaxonomyServiceProvider",
-      "Snape\\EcoSystemWP\\Providers\\CarbonFieldsServiceProvider"
+      "Snape\\EcoSystemWP\\Providers\\CarbonFieldsServiceProvider",
+      "Snape\\EcoSystemWP\\Providers\\ImageServiceProvider"
     ],
     "timber": {
       "views": "views"
