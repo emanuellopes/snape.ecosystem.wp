@@ -4,6 +4,8 @@
       "book": "SampleThemeApp\\PostTypes\\Book",
       "bookCategory": "SampleThemeApp\\Taxonomies\\BookCategory"
     },
-    "public": {}
+    "public": {
+		"enqueueFiles": "SampleThemeApp\\Bootstrap\\EnqueueFiles"
+	}
   }
 }

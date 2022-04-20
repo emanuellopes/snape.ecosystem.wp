@@ -4,6 +4,7 @@ namespace SampleThemeApp\PostTypes;
 
 use Carbon_Fields\Container\Container;
 use Carbon_Fields\Field\Field;
+use League\Config\ConfigurationInterface;
 use Snape\EcoSystemWP\Contracts\ICarbonFieldsFactoryInterface;
 use Snape\EcoSystemWP\Contracts\PostType\IPostTypeFactoryInterface;
 use Snape\EcoSystemWP\Features\AbstractFeature;
@@ -15,11 +16,12 @@ class Book extends AbstractFeature
 
     public function __construct(
         IPostTypeFactoryInterface $postTypeFactory,
-        ICarbonFieldsFactoryInterface $carbonFieldsFactory
+        ICarbonFieldsFactoryInterface $carbonFieldsFactory,
+        ConfigurationInterface $config
     ) {
         $this->postTypeFactory = $postTypeFactory;
         $this->carbonFieldsFactory = $carbonFieldsFactory;
-        parent::__construct();
+        parent::__construct($config);
     }
 
     public function boot(): void
