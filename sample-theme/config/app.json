@@ -5,7 +5,8 @@
       "Snape\\EcoSystemWP\\Providers\\TaxonomyServiceProvider",
       "Snape\\EcoSystemWP\\Providers\\CarbonFieldsServiceProvider",
       "Snape\\EcoSystemWP\\Providers\\ImageServiceProvider",
-      "Snape\\EcoSystemWP\\Providers\\ResetServiceProvider"
+      "Snape\\EcoSystemWP\\Providers\\ResetServiceProvider",
+      "Snape\\EcoSystemWP\\Providers\\TimberServiceProvider"
     ],
     "timber": {
       "views": "views"
@@ -13,11 +14,18 @@
     "boundedContext": "sample",
     "theme": {
       "supports": {
+		  "automatic-feed-links": true,
+		  "title-tag": true,
+		  "html5": [
+			  "comment-form",
+			  "comment-list",
+			  "gallery",
+			  "caption",
+			  "style",
+			  "script",
+			  "navigation-widgets"
+		  ],
         "post-thumbnails":  true,
-        "custom-logo": {
-          "height": 480,
-          "width": 720
-        },
         "menus": true
       }
     }
