@@ -13,7 +13,8 @@ class ApplicationConfig extends AbstractConfigSchema
         return Expect::structure([
             'providers' => Expect::list('string')->required(),
             'timber' => Expect::structure([
-                'views' => Expect::string()->default('views'),
+                'viewsPath' => Expect::string()->default('views'),
+                'alias' => Expect::arrayOf('string', 'string')
             ])->required(),
             'boundedContext' => Expect::string()->required(),
             'theme' => Expect::structure([

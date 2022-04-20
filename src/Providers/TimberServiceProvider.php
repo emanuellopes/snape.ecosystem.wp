@@ -12,7 +12,10 @@ class TimberServiceProvider extends AbstractBaseServiceProvider implements Boota
      */
     public function boot(): void
     {
-        Timber::$dirname = $this->getConfig()->get('app.timber.views');
+        new Timber();
+        Timber::$cache = ! WP_DEBUG;
+        Timber::$dirname = $this->getConfig()->get('app.timber.viewsPath');
+        $this->addTemplateAlias();
     }
 
     /**
@@ -26,5 +29,29 @@ class TimberServiceProvider extends AbstractBaseServiceProvider implements Boota
     public function provides(string $id): bool
     {
         return $id === Timber::class;
+    }
+
+    private function addTemplateAlias(): void
+    {
+        add_filter(
+            'timber/loader/loader',
+            function ($loader) {
+                $viewsPath = $this->getConfig()->get('app.timber.viewsPath');
+
+                /** @var array $alias */
+                $alias = $this->getConfig()->get('app.timber.alias');
+
+                /** @var string $folder */
+                /** @var string $aliasName */
+                foreach ($alias as $folder => $aliasName) {
+                    $loader->addPath(
+                        sprintf("%s/%s/%s", get_theme_file_path(), $viewsPath, $folder),
+                        $aliasName
+                    );
+                }
+
+                return $loader;
+            }
+        );
     }
 }
