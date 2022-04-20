@@ -12,7 +12,7 @@ class WordPressControllerServiceProvider extends AbstractBaseServiceProvider imp
         add_filter('template_include', array($this, 'handleTemplateInclude'));
     }
 
-    public function handleTemplateInclude(string $template): string
+    public function handleTemplateInclude(string $template): void
     {
         include $template;
 
@@ -30,20 +30,11 @@ class WordPressControllerServiceProvider extends AbstractBaseServiceProvider imp
         }
 
         $controllerInstance->renderPage();
-
-        return $template;
     }
 
     public function getControllerClassFromTemplate(string $template): string
     {
-        $controllerName = $this->extractNamespace($template);
-
-        //Return 404 if Controller is the 404
-        if ($controllerName === '404Controller') {
-            $controllerName = 'Error' . $controllerName;
-        }
-
-        return $controllerName;
+        return $this->extractNamespace($template);
     }
 
     /**
