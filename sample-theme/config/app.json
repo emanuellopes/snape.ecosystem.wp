@@ -6,7 +6,8 @@
       "Snape\\EcoSystemWP\\Providers\\CarbonFieldsServiceProvider",
       "Snape\\EcoSystemWP\\Providers\\ImageServiceProvider",
       "Snape\\EcoSystemWP\\Providers\\ResetServiceProvider",
-      "Snape\\EcoSystemWP\\Providers\\TimberServiceProvider"
+      "Snape\\EcoSystemWP\\Providers\\TimberServiceProvider",
+      "Snape\\EcoSystemWP\\Providers\\WordPressControllerServiceProvider"
     ],
     "timber": {
       "views": "views"
