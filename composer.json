@@ -31,7 +31,8 @@
     "ext-json": "*",
     "league/container": "^4.2",
     "league/config": "^1.1",
-    "htmlburger/carbon-fields": "^3.3"
+    "htmlburger/carbon-fields": "^3.3",
+    "timber/timber": "^1.19"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7",

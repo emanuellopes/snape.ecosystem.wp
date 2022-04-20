@@ -1,0 +1,10 @@
+{% extends "@base/base.twig" %}
+
+{% block content %}
+    <div class="container flex four-oh-four">
+        <p>
+            Page not found!<br/>
+            <a href="{{ site.link | e('esc_url') }}">Go back to safety &rarr;</a>
+        </p>
+    </div>
+{% endblock %}
