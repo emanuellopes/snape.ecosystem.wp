@@ -50,8 +50,8 @@
 	},
 	"archive": {
 		"exclude": [
-			"/_dev",
-			"/.editorconfig",
+			"/_dev/*",
+			".editorconfig",
 			"/.gitignore",
 			"/docker-compose.yml",
 			"/phpcs.xml",
