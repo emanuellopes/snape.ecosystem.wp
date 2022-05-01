@@ -27,9 +27,6 @@ abstract class AbstractController
         $timer = Helper::stop_timer((int) $this->start);
         do_action('qm/debug', 'Page rendered in: ' . $timer); //phpcs:ignore
         Helper::error_log($timer);
-        if (WP_DEBUG) {
-            echo '<span> Page rendered in: ' . esc_html($timer) . '</span>';
-        }
     }
 
     /**
