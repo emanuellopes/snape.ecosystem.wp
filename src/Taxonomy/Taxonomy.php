@@ -132,7 +132,7 @@ class Taxonomy implements ITaxonomyInterface
      */
     public function init(int $priority = 10): ITaxonomyInterface
     {
-        add_action('after_setup_theme', array( $this, 'register' ), $priority);
+        add_action('init', array( $this, 'register' ), $priority);
 
         return $this;
     }
