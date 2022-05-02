@@ -2,25 +2,19 @@
 
 namespace Snape\EcoSystemWP\AdvancedCustomFields;
 
-use League\Config\ConfigurationInterface;
 use Snape\EcoSystemWP\Features\AbstractFeature;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
 abstract class AbstractAcfBase extends AbstractFeature
 {
-    private FieldsBuilder $fieldsBuilder;
-
-    public function __construct(ConfigurationInterface $config)
+    protected function createACFFields(string $name): FieldsBuilder
     {
-        parent::__construct($config);
-    }
+        $fieldsBuilder = new FieldsBuilder($name);
 
-    protected function createACFFields(string $name): void
-    {
-        $this->fieldsBuilder = new FieldsBuilder($name);
-
-        add_action('acf/init', function () {
-            acf_add_local_field_group($this->fieldsBuilder->build());
+        add_action('acf/init', function () use ($fieldsBuilder) {
+            acf_add_local_field_group($fieldsBuilder->build());
         });
+
+        return $fieldsBuilder;
     }
 }
