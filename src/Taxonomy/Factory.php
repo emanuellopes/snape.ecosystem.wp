@@ -62,7 +62,7 @@ class Factory implements ITaxonomyFactoryInterface
         string $slug,
         string $singular = '',
         string $plural = ''
-    ): ITaxonomyInterface {
+    ): Taxonomy {
         $taxonomy = new Taxonomy($slug);
         $taxonomy->setLabels($this->getLabels($singular, $plural))->setArguments($this->defaultArguments());
 
@@ -81,11 +81,20 @@ class Factory implements ITaxonomyFactoryInterface
 
         $taxonomy = $this->createTaxonomyInstance($slug, $singular, $plural);
 
-        $taxonomy->init($priority);
+        $this->initOrRegister($taxonomy);
 
         $this->container->add("snape-ecosystemwp.taxonomy.{$slug}", $taxonomy);
 
         return $taxonomy;
+    }
+
+    private function initOrRegister(Taxonomy $taxonomy): void
+    {
+        if (function_exists('current_filter') && 'init' === current_filter()) {
+            $taxonomy->register();
+        } else {
+            $taxonomy->init();
+        }
     }
 
     public function update(
