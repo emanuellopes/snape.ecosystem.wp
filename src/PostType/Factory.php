@@ -90,7 +90,7 @@ class Factory implements IPostTypeFactoryInterface
         string $slug,
         string $singular,
         string $plural
-    ): IPostTypeInterface {
+    ): PostType {
         $post_type = new PostType($slug);
         $post_type->setLabels($this->getLabels($singular, $plural))
                   ->setArguments($this->defaultArguments());
@@ -119,11 +119,20 @@ class Factory implements IPostTypeFactoryInterface
 
         $post_type = $this->createPostTypeInstance($slug, $singular, $plural);
 
-        $post_type->init($priority);
+        $this->initOrRegister($post_type, $priority);
 
         $this->container->add("snape-ecosystemwp.posttype.{$slug}", $post_type);
 
         return $post_type;
+    }
+
+    private function initOrRegister(PostType $postType, int $priority): void
+    {
+        if (function_exists('current_filter') && 'init' === current_filter()) {
+            $postType->register();
+        } else {
+            $postType->init($priority);
+        }
     }
 
     /**

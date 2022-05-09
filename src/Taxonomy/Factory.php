@@ -81,19 +81,19 @@ class Factory implements ITaxonomyFactoryInterface
 
         $taxonomy = $this->createTaxonomyInstance($slug, $singular, $plural);
 
-        $this->initOrRegister($taxonomy);
+        $this->initOrRegister($taxonomy, $priority);
 
         $this->container->add("snape-ecosystemwp.taxonomy.{$slug}", $taxonomy);
 
         return $taxonomy;
     }
 
-    private function initOrRegister(Taxonomy $taxonomy): void
+    private function initOrRegister(Taxonomy $taxonomy, int $priority): void
     {
         if (function_exists('current_filter') && 'init' === current_filter()) {
             $taxonomy->register();
         } else {
-            $taxonomy->init();
+            $taxonomy->init($priority);
         }
     }
 
