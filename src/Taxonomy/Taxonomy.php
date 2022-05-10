@@ -132,7 +132,11 @@ class Taxonomy implements ITaxonomyInterface
      */
     public function init(int $priority = 10): ITaxonomyInterface
     {
-        add_action('init', array( $this, 'register' ), $priority);
+        if (function_exists('current_filter') && 'init' === current_filter()) {
+            $this->register();
+        } else {
+            add_action('init', array($this, 'register'), $priority);
+        }
 
         return $this;
     }
@@ -143,14 +147,13 @@ class Taxonomy implements ITaxonomyInterface
     public function register(): void
     {
         register_taxonomy($this->slug, $this->post_types, $this->getArguments());
-        $this->bind();
     }
 
     /**
      * Bind the taxonomy to its custom post type|object. Make sure the taxonomy
      * can be found in 'parse_query' or 'pre_get_posts' filters.
      */
-    protected function bind(): void
+    public function bind(): void
     {
         foreach ($this->post_types as $object) {
             register_taxonomy_for_object_type($this->slug, $object);
@@ -168,6 +171,7 @@ class Taxonomy implements ITaxonomyInterface
     {
         $this->post_types = array_unique(array_merge($this->post_types, (array) $objects));
 
+        $this->bind();
         return $this;
     }
 
@@ -198,12 +202,11 @@ class Taxonomy implements ITaxonomyInterface
         $args_new = array_merge($args, $this->getArguments());
 
         if ($taxonomy_type === $this->getSlug()) {
-            add_action(
-                'init',
-                function () {
-                    $this->bind();
-                }
-            );
+            if (function_exists('current_filter') && 'init' === current_filter()) {
+                $this->bind();
+            } else {
+                add_action('init', array($this, 'bind'));
+            }
 
             return $args_new;
         }
@@ -214,23 +217,29 @@ class Taxonomy implements ITaxonomyInterface
     /**
      * Remove taxonomy from Post Type
      *
-     * @param  array  $taxonomies
      * @param  int  $priority
      *
+     * @return ITaxonomyInterface
      */
-    public function unregister(array $taxonomies = array(), int $priority = 10): void
+    public function unregister(int $priority = 10): ITaxonomyInterface
     {
-        if (! empty($taxonomies)) {
-            $this->setObjects($taxonomies);
+        if (function_exists('current_filter') && 'init' === current_filter()) {
+            $this->unregisterCallback();
+        } else {
+            add_action('init', array($this, 'unregisterCallback'), $priority);
         }
-        add_action(
-            'init',
-            function () {
-                foreach ($this->getObjects() as $object) {
-                    unregister_taxonomy_for_object_type($this->getSlug(), $object);
-                }
-            },
-            $priority
-        );
+
+        return $this;
+    }
+
+    /**
+     * @return void
+     * @internal Used only for callback
+     */
+    public function unregisterCallback(): void
+    {
+        foreach ($this->getObjects() as $object) {
+            unregister_taxonomy_for_object_type($this->getSlug(), $object);
+        }
     }
 }

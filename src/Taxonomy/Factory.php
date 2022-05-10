@@ -74,27 +74,18 @@ class Factory implements ITaxonomyFactoryInterface
         string $singular,
         string $plural,
         int $priority = 10
-    ): ITaxonomyInterface {
+    ): Taxonomy {
         if ($this->exists($slug)) {
             throw new \Exception("The post type [{$slug}] already exists.");
         }
 
         $taxonomy = $this->createTaxonomyInstance($slug, $singular, $plural);
 
-        $this->initOrRegister($taxonomy, $priority);
+        $taxonomy->init($priority);
 
         $this->container->add("snape-ecosystemwp.taxonomy.{$slug}", $taxonomy);
 
         return $taxonomy;
-    }
-
-    private function initOrRegister(Taxonomy $taxonomy, int $priority): void
-    {
-        if (function_exists('current_filter') && 'init' === current_filter()) {
-            $taxonomy->register();
-        } else {
-            $taxonomy->init($priority);
-        }
     }
 
     public function update(
@@ -118,6 +109,7 @@ class Factory implements ITaxonomyFactoryInterface
     public function remove(string $slug, array $taxonomies = array(), int $priority = 10): void
     {
         $taxonomy = $this->createTaxonomyInstance($slug);
-        $taxonomy->unregister($taxonomies, $priority);
+        $taxonomy->setObjects($taxonomies);
+        $taxonomy->unregister($priority);
     }
 }

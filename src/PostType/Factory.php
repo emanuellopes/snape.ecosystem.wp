@@ -112,27 +112,18 @@ class Factory implements IPostTypeFactoryInterface
         string $singular,
         string $plural,
         int $priority = 10
-    ): IPostTypeInterface {
+    ): PostType {
         if ($this->exists($slug)) {
             throw new \Exception("The post type [{$slug}] already exists.");
         }
 
         $post_type = $this->createPostTypeInstance($slug, $singular, $plural);
 
-        $this->initOrRegister($post_type, $priority);
+        $post_type->init($priority);
 
         $this->container->add("snape-ecosystemwp.posttype.{$slug}", $post_type);
 
         return $post_type;
-    }
-
-    private function initOrRegister(PostType $postType, int $priority): void
-    {
-        if (function_exists('current_filter') && 'init' === current_filter()) {
-            $postType->register();
-        } else {
-            $postType->init($priority);
-        }
     }
 
     /**

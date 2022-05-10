@@ -156,7 +156,11 @@ class PostType implements IPostTypeInterface
      */
     public function init($priority = 10): IPostTypeInterface
     {
-        add_action('init', array($this, 'register'), $priority);
+        if (function_exists('current_filter') && 'init' === current_filter()) {
+            $this->register();
+        } else {
+            add_action('init', array($this, 'register'), $priority);
+        }
 
         return $this;
     }
@@ -218,12 +222,11 @@ class PostType implements IPostTypeInterface
     {
         $args_new = array_merge($args, $this->getArguments());
         if ($post_type === $this->getSlug()) {
-            add_action(
-                'init',
-                function () {
-                    $this->addSupports();
-                }
-            );
+            if (function_exists('current_filter') && 'init' === current_filter()) {
+                $this->addSupports();
+            } else {
+                add_action('init', array($this, 'addSupports'));
+            }
 
             return $args_new;
         }
@@ -256,7 +259,7 @@ class PostType implements IPostTypeInterface
     /**
      * Add post type custom support title, editor, thumbnail etc...
      */
-    private function addSupports(): void
+    public function addSupports(): void
     {
         $supports = $this->getSupports();
         if (! empty($supports)) {
