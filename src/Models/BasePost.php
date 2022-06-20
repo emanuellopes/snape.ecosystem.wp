@@ -8,11 +8,11 @@ use Timber\Post;
 class BasePost extends Post
 {
     /**
-     * @param  int  $image_id
+     * @param  int|null  $image_id
      *
      * @return Image|null
      */
-    protected function getImageObject(int $image_id): ?Image
+    protected function getImageObject(?int $image_id): ?Image
     {
         if (! $image_id) {
             return null;

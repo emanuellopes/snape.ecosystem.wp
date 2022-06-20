@@ -20,7 +20,12 @@ class BaseTerm extends Term
         return wp_specialchars_decode($this->name);
     }
 
-    protected function getImageObject(int $image_id): ?Image
+    /**
+     * @param  int|null  $image_id
+     *
+     * @return Image|null
+     */
+    protected function getImageObject(?int $image_id): ?Image
     {
         if (! $image_id) {
             return null;
