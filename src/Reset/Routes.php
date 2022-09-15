@@ -16,7 +16,7 @@ class Routes
      */
     public function __construct()
     {
-        add_filter('rest_url_prefix', array($this, 'restApiUrlPrefix'));
+//        add_filter('rest_url_prefix', array($this, 'restApiUrlPrefix'));
         add_filter('xmlrpc_enabled', '__return_false');
         add_filter('xmlrpc_methods', '__return_empty_array');
         add_action('rest_endpoints', array($this, 'changeUserEndpointPermissions'));
