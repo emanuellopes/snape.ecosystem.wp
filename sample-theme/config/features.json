@@ -5,7 +5,8 @@
       "bookCategory": "SampleThemeApp\\Taxonomies\\BookCategory"
     },
     "public": {
-		"enqueueFiles": "SampleThemeApp\\Bootstrap\\EnqueueFiles"
+		"enqueueFiles": "SampleThemeApp\\Bootstrap\\EnqueueFiles",
+		"postCustomFields": "SampleThemeApp\\CustomFields\\PostCustomFields"
 	}
   }
 }
