@@ -2,9 +2,10 @@
 
 namespace Snape\EcoSystemWP\Config;
 
-use JsonException;
 use Nette\Schema\Expect;
 use Nette\Schema\Schema;
+use Symfony\Component\Yaml\Exception\ParseException;
+use Symfony\Component\Yaml\Yaml;
 
 class ImagesConfig extends AbstractConfigSchema
 {
@@ -26,21 +27,14 @@ class ImagesConfig extends AbstractConfigSchema
     public function getConfigFile(): array
     {
         try {
-            $json = json_decode(
-                file_get_contents(
-                    $this->application->configPath() . '/images.json'
-                ),
-                true,
-                512,
-                JSON_THROW_ON_ERROR
-            );
-        } catch (JsonException $e) {
+            $data = Yaml::parseFile($this->application->configPath() . '/images.yaml');
+        } catch (ParseException $e) {
             error_log('Configuration file not found');
 
             return array();
         }
 
-        return $json;
+        return $data;
     }
 
     public function getKey(): string

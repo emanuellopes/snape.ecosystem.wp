@@ -1,7 +1,0 @@
-{
-	"reset": [
-		"Snape\\EcoSystemWP\\Reset\\Routes",
-		"Snape\\EcoSystemWP\\Reset\\TinyMCE",
-		"Snape\\EcoSystemWP\\Reset\\Theme"
-	]
-}

@@ -2,7 +2,6 @@
 
 namespace Snape\EcoSystemWP\Config;
 
-use JsonException;
 use Nette\Schema\Expect;
 use Nette\Schema\Schema;
 use Symfony\Component\Yaml\Exception\ParseException;

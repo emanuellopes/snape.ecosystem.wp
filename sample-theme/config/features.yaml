@@ -1,0 +1,7 @@
+features:
+  admin:
+    book: SampleThemeApp\PostTypes\Book
+    bookCategory: SampleThemeApp\Taxonomies\BookCategory
+  public:
+    enqueueFiles: SampleThemeApp\Bootstrap\EnqueueFiles
+    postCustomFields: SampleThemeApp\CustomFields\PostCustomFields
