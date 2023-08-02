@@ -17,7 +17,7 @@ abstract class AbstractController
 
     public function __construct()
     {
-        $this->data = Timber::get_context();
+        $this->data = Timber::context();
         $this->prepareContent();
         $this->start = Helper::start_timer();
     }

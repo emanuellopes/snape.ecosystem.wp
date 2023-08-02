@@ -13,6 +13,6 @@ class IndexController extends AbstractController
 
     protected function prepareContent(): void
     {
-        $this->addData('sample', 'sample-content');
+        $this->addData('myvariable', 'sample-content');
     }
 }
