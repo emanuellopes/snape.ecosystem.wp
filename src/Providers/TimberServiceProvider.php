@@ -5,6 +5,7 @@ namespace Snape\EcoSystemWP\Providers;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 use Timber\Timber;
 
+
 class TimberServiceProvider extends AbstractBaseServiceProvider implements BootableServiceProviderInterface
 {
     /**
@@ -12,8 +13,7 @@ class TimberServiceProvider extends AbstractBaseServiceProvider implements Boota
      */
     public function boot(): void
     {
-        new Timber();
-        Timber::$cache = ! WP_DEBUG;
+        Timber::init();
         Timber::$dirname = $this->getConfig()->get('app.timber.viewsPath');
         $this->addTemplateAlias();
     }
