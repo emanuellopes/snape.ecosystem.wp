@@ -1,7 +1,7 @@
 FROM composer:latest as composer
-FROM wordpress:cli-2.5.0-php7.4 as cli
-FROM wordpress:5.9.3-fpm-alpine as wordpress
-FROM wordpress:5.9.3-fpm-alpine as php
+FROM wordpress:cli-2.8.1-php8.1 as cli
+FROM wordpress:6.2.2-php8.1-fpm-alpine as wordpress
+FROM wordpress:6.2.2-php8.1-fpm-alpine as php
 
 # Add xdebug config
 ADD xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
@@ -24,21 +24,4 @@ COPY --from=wordpress /usr/src/wordpress/ ./
 COPY --from=cli /usr/local/bin/wp /usr/local/bin/wp
 
 # install wp-cli dependencies
-RUN apk add --no-cache mysql-client
-
-# install xdebug
-RUN set -xe && \
-        docker-php-source extract && \
-        apk add --no-cache --virtual .build-deps \
-            autoconf \
-            g++ \
-            make \
-        && \
-        pecl install xdebug && \
-        docker-php-ext-enable xdebug && \
-        docker-php-source delete && \
-        apk del .build-deps && \
-        php -v && \
-        php -m
-
-#COPY docker-xdebug-* /usr/local/bin/
+RUN apk add --no-cache mysql-client less
