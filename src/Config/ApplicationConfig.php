@@ -6,6 +6,7 @@ use Nette\Schema\Expect;
 use Nette\Schema\Schema;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
+use Timber\Helper;
 
 class ApplicationConfig extends AbstractConfigSchema
 {
@@ -24,15 +25,12 @@ class ApplicationConfig extends AbstractConfigSchema
         ]);
     }
 
-    /**
-     * @return  array<string, mixed> $config
-     */
-    public function getConfigFile(): array
+    public function getConfigFile(): mixed
     {
         try {
             $data = Yaml::parseFile($this->application->configPath() . '/app.yaml');
         } catch (ParseException $e) {
-            error_log('Configuration file not found');
+            Helper::warn($e->getMessage());
 
             return array();
         }
