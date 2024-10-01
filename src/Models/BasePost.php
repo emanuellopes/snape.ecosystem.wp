@@ -6,5 +6,5 @@ use Timber\Post;
 
 class BasePost extends Post
 {
-
+    //empty
 }

@@ -20,7 +20,7 @@ class ResetConfig extends AbstractConfigSchema
         try {
             $data = Yaml::parseFile($this->application->configPath() . '/reset.yaml');
         } catch (ParseException $e) {
-           Helper::warn($e->getMessage());
+            Helper::warn($e->getMessage());
 
             return array();
         }

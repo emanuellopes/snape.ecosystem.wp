@@ -3,7 +3,6 @@
 namespace Snape\EcoSystemWP\Bootstrappers;
 
 use Exception;
-use Snape\EcoSystemWP\Application\Container;
 use Snape\EcoSystemWP\Config\FeaturesConfig;
 use Snape\EcoSystemWP\Contracts\IApplicationInterface;
 use Snape\EcoSystemWP\Contracts\IBootstrapInterface;

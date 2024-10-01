@@ -5,7 +5,6 @@ namespace Snape\EcoSystemWP\Providers;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 use Timber\Timber;
 
-
 class TimberServiceProvider extends AbstractBaseServiceProvider implements BootableServiceProviderInterface
 {
     /**
@@ -45,7 +44,7 @@ class TimberServiceProvider extends AbstractBaseServiceProvider implements Boota
                 /** @var string $aliasName */
                 foreach ($alias as $folder => $aliasName) {
                     $loader->addPath(
-                        sprintf("%s/%s/%s", get_theme_file_path(), $viewsPath, $folder),
+                        sprintf('%s/%s/%s', get_theme_file_path(), $viewsPath, $folder),
                         $aliasName
                     );
                 }

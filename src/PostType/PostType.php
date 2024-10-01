@@ -205,9 +205,8 @@ class PostType implements IPostTypeInterface
      *
      * @return IPostTypeInterface
      */
-    public function update(
-        int $priority = 10
-    ): IPostTypeInterface {
+    public function update(int $priority = 10): IPostTypeInterface
+    {
         add_filter(
             'register_post_type_args',
             array($this, 'updateCallback'),

@@ -7,9 +7,9 @@ use Timber\Timber;
 
 abstract class AbstractController
 {
-    private array $data;
+    protected array $data;
 
-    private float $start;
+    protected float $start;
 
     abstract protected function getTemplate(): string;
 
@@ -17,9 +17,14 @@ abstract class AbstractController
 
     public function __construct()
     {
+        $this->initializeContext();
+//        $this->start = Helper::start_timer();
+    }
+
+    protected function initializeContext(): void
+    {
         $this->data = Timber::context();
         $this->prepareContent();
-        $this->start = Helper::start_timer();
     }
 
     public function measureSpeed(): void
@@ -55,7 +60,7 @@ abstract class AbstractController
     {
         Timber::render($this->getTemplate(), $this->getData(), $this->getCacheTime());
 
-        $this->measureSpeed();
+//        $this->measureSpeed();
     }
 
     public function goToHomePage(): void

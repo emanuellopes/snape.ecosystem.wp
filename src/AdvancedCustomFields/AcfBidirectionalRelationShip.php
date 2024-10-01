@@ -19,7 +19,6 @@ class AcfBidirectionalRelationShip extends AbstractFeature
 
         $acf_version = acf_get_setting('version');
         if (version_compare($acf_version, '5.0.0', '<')) {
-
             return;
         }
 
@@ -172,11 +171,12 @@ class AcfBidirectionalRelationShip extends AbstractFeature
             }
         } elseif ($max_posts > 0) {
             $overwrite_settings = apply_filters('acf-post2post/overwrite-settings', array());
-            if (isset($overwrite_settings[$field_name]) && isset($overwrite_settings[$field_name]['overwrite'])
-                && $overwrite_settings[$field_name]['overwrite']
+            if (
+                isset($overwrite_settings[$field_name]['overwrite']) && $overwrite_settings[$field_name]['overwrite']
             ) {
                 $type = 'first';
-                if (isset($overwrite_settings[$field_name]['type'])
+                if (
+                    isset($overwrite_settings[$field_name]['type'])
                     && in_array(
                         strtolower($overwrite_settings[$field_name]['type']),
                         array('first', 'last')
@@ -233,7 +233,8 @@ class AcfBidirectionalRelationShip extends AbstractFeature
         for ($g = 0; $g < $field_group_count; $g++) {
             $field_count = count($field_groups[$g]['fields']);
             for ($f = 0; $f < $field_count; $f++) {
-                if ($field_groups[$g]['fields'][$f]['name'] == $field_name
+                if (
+                    $field_groups[$g]['fields'][$f]['name'] == $field_name
                     && in_array(
                         $field_groups[$g]['fields'][$f]['type'],
                         array('relationship', 'post_object')

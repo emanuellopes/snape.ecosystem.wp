@@ -10,7 +10,7 @@ interface ITaxonomyFactoryInterface
         string $slug,
         string $singular = '',
         string $plural = '',
-        int $priority = 10
+        int $priority = 10,
     ): ITaxonomyInterface;
 
     public function exists(string $slug): bool;

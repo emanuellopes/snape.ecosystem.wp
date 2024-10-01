@@ -17,7 +17,7 @@ class Book extends AbstractFeature
     public function __construct(
         IPostTypeFactoryInterface $postTypeFactory,
         ICarbonFieldsFactoryInterface $carbonFieldsFactory,
-        ConfigurationInterface $config
+        ConfigurationInterface $config,
     ) {
         $this->postTypeFactory = $postTypeFactory;
         $this->carbonFieldsFactory = $carbonFieldsFactory;

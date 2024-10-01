@@ -2,7 +2,6 @@
 
 namespace Snape\EcoSystemWP\Images;
 
-
 class RegisterImages
 {
     private array $sizes;

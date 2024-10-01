@@ -9,7 +9,7 @@ trait ConfigReaderTrait
 {
     protected function registerConfigSchema(
         IConfigurationSchemaInterface $config,
-        ConfigurationBuilderInterface $configurationBuilder
+        ConfigurationBuilderInterface $configurationBuilder,
     ): void {
         $configurationBuilder->addSchema(
             $config->getKey(),

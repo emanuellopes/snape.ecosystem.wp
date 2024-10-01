@@ -61,7 +61,7 @@ class Factory implements ITaxonomyFactoryInterface
     private function createTaxonomyInstance(
         string $slug,
         string $singular = '',
-        string $plural = ''
+        string $plural = '',
     ): Taxonomy {
         $taxonomy = new Taxonomy($slug);
         $taxonomy->setLabels($this->getLabels($singular, $plural))->setArguments($this->defaultArguments());
@@ -73,7 +73,7 @@ class Factory implements ITaxonomyFactoryInterface
         string $slug,
         string $singular,
         string $plural,
-        int $priority = 10
+        int $priority = 10,
     ): Taxonomy {
         if ($this->exists($slug)) {
             throw new \Exception("The post type [{$slug}] already exists.");
@@ -92,7 +92,7 @@ class Factory implements ITaxonomyFactoryInterface
         string $slug,
         string $singular = '',
         string $plural = '',
-        int $priority = 10
+        int $priority = 10,
     ): ITaxonomyInterface {
         $taxonomy = $this->createTaxonomyInstance($slug, $singular, $plural);
         $taxonomy->update($priority);

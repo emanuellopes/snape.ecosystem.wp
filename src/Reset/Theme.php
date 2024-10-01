@@ -6,15 +6,15 @@ class Theme
 {
     public function __construct()
     {
-        $this->clean_wp_theme();
+        $this->cleanWpTheme();
     }
 
-    private function clean_wp_theme(): void
+    private function cleanWpTheme(): void
     {
-        add_action('redirect_canonical', array($this, 'remove_redirect_guess_404_permalink'));
+        add_action('redirect_canonical', array($this, 'removeRedirectGuess404Permalink'));
 
-        add_action('do_faviconico', array($this, 'wp_favicon_remover'));
-        add_action('wp_enqueue_scripts', array($this, 'remove_block_css'));
+        add_action('do_faviconico', array($this, 'wpFaviconRemover'));
+        add_action('wp_enqueue_scripts', array($this, 'removeBlockCss'));
 
         remove_action('wp_head', 'feed_links', 2);
         remove_action('wp_head', 'wp_resource_hints', 2);
@@ -28,7 +28,7 @@ class Theme
         remove_action('wp_print_styles', 'print_emoji_styles');
     }
 
-    public function remove_redirect_guess_404_permalink($redirect_url)
+    public function removeRedirectGuess404Permalink($redirect_url)
     {
         if (is_404()) {
             return false;
@@ -37,12 +37,12 @@ class Theme
         return $redirect_url;
     }
 
-    public function wp_favicon_remover(): void
+    public function wpFaviconRemover(): void
     {
         exit;
     }
 
-    public function remove_block_css(): void
+    public function removeBlockCss(): void
     {
         wp_dequeue_style('wp-block-library');
     }
